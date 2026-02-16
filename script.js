@@ -1,45 +1,53 @@
-﻿const table = [
-  ["あ", "い", "う", "え", "お"],
-  ["か", "き", "く", "け", "こ"],
-  ["さ", "し", "す", "せ", "そ"],
-  ["た", "ち", "つ", "て", "と"],
+﻿const keyGroups = [
+  // Key 1
+  ["あ", "い", "う", "え", "お", "ぁ", "ぃ", "ぅ", "ぇ", "ぉ"],
+  // Key 2
+  ["か", "き", "く", "け", "こ", "が", "ぎ", "ぐ", "げ", "ご"],
+  // Key 3
+  ["さ", "し", "す", "せ", "そ", "ざ", "じ", "ず", "ぜ", "ぞ"],
+  // Key 4
+  ["た", "ち", "つ", "て", "と", "だ", "ぢ", "づ", "で", "ど", "っ"],
+  // Key 5
   ["な", "に", "ぬ", "ね", "の"],
-  ["は", "ひ", "ふ", "へ", "ほ"],
+  // Key 6
+  ["は", "ひ", "ふ", "へ", "ほ", "ば", "び", "ぶ", "べ", "ぼ", "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"],
+  // Key 7
   ["ま", "み", "む", "め", "も"],
-  ["や", "ゆ", "よ"],
+  // Key 8
+  ["や", "ゆ", "よ", "ゃ", "ゅ", "ょ"],
+  // Key 9
   ["ら", "り", "る", "れ", "ろ"],
-  ["わ", "を", "ん"]
+  // Key 0
+  ["わ", "を", "ん", "ゎ", "ー", "〜", "、", "。", "・", "！", "？", "「", "」", "（", "）", "：", "；", "…"]
 ];
 
-const smallToLarge = {
-  "ぁ": "あ",
-  "ぃ": "い",
-  "ぅ": "う",
-  "ぇ": "え",
-  "ぉ": "お",
-  "ゃ": "や",
-  "ゅ": "ゆ",
-  "ょ": "よ",
-  "ゎ": "わ",
-  "っ": "つ"
+const symbolAliases = {
+  "!": "！",
+  "?": "？",
+  ",": "、",
+  ".": "。",
+  "-": "ー",
+  "~": "〜",
+  "(": "（",
+  ")": "）",
+  ":": "：",
+  ";": "；"
 };
 
 const charToDigits = new Map();
 
-table.forEach((group, row) => {
+keyGroups.forEach((group, row) => {
   const key = row === 0 ? "1" : String(row + 1);
   group.forEach((ch, index) => {
     charToDigits.set(ch, key.repeat(index + 1));
   });
 });
 
-// 例: が -> か, ぱ -> は のように分解して基本かなへ寄せる
 function normalizeKana(char) {
-  const kataToHira = char.replace(/[ァ-ン]/g, (s) =>
-    String.fromCharCode(s.charCodeAt(0) - 0x60)
-  );
-  const decomposed = kataToHira.normalize("NFD").replace(/[\u3099\u309A]/g, "");
-  return smallToLarge[decomposed] || decomposed;
+  const normalized = char
+    .replace(/[ァ-ヶ]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0x60))
+    .normalize("NFC");
+  return symbolAliases[normalized] || normalized;
 }
 
 function convert(text) {
