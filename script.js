@@ -74,6 +74,7 @@ function convert(text) {
 
 const input = document.getElementById("inputText");
 const output = document.getElementById("outputText");
+const tweetButton = document.getElementById("tweetButton");
 
 function render() {
   const value = input.value.trim();
@@ -81,4 +82,15 @@ function render() {
 }
 
 input.addEventListener("input", render);
+
+tweetButton.addEventListener("click", () => {
+  const text = output.textContent.trim();
+  if (!text || text === "1 22") {
+    return;
+  }
+
+  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+  window.open(url, "_blank", "noopener,noreferrer");
+});
+
 render();

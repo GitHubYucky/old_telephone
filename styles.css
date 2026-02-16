@@ -78,6 +78,26 @@ textarea {
   word-break: break-all;
 }
 
+.actions {
+  margin-top: 12px;
+}
+
+.tweet-button {
+  border: 1px solid #95afc6;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #0b1725, #070f19);
+  color: #e6f2ff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.tweet-button:hover {
+  border-color: #c7d9ea;
+  transform: translateY(-1px);
+}
+
 .hint {
   margin-top: 10px;
   font-size: 13px;
