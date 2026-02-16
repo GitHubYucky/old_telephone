@@ -1,0 +1,85 @@
+﻿:root {
+  --bg-1: #0d1b2a;
+  --bg-2: #1b263b;
+  --panel: #1f3b4d;
+  --text: #e0e7ff;
+  --accent: #7dd3fc;
+  --accent-2: #fde68a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Yu Gothic UI", "Meiryo", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 20%, #2b4f68 0%, transparent 30%),
+    radial-gradient(circle at 80% 10%, #274059 0%, transparent 35%),
+    linear-gradient(165deg, var(--bg-1), var(--bg-2));
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.phone {
+  width: min(640px, 100%);
+  border-radius: 24px;
+  background: linear-gradient(180deg, #3b556e, #1b2f42);
+  border: 2px solid #6d8aa5;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    inset 0 2px 0 rgba(255, 255, 255, 0.15);
+  padding: 20px;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(20px, 3vw, 28px);
+  letter-spacing: 0.06em;
+}
+
+p {
+  margin: 0 0 14px;
+  opacity: 0.9;
+}
+
+label {
+  display: block;
+  margin: 10px 0 6px;
+  font-size: 14px;
+  color: var(--accent-2);
+}
+
+textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #5d7a93;
+  background: #0f1f2f;
+  color: var(--text);
+  padding: 12px;
+  min-height: 96px;
+  resize: vertical;
+  font-size: 18px;
+}
+
+.output {
+  margin-top: 14px;
+  border-radius: 12px;
+  border: 1px solid #5d7a93;
+  background: #0f1f2f;
+  padding: 12px;
+  min-height: 64px;
+  font-size: 24px;
+  letter-spacing: 0.08em;
+  word-break: break-all;
+}
+
+.hint {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--accent);
+}
